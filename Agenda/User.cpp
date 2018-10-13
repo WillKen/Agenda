@@ -1,10 +1,5 @@
 #include "User.hpp"
 
-User::User()
-{
-
-}
-
 User::User(std::string t_userName, std::string t_userPassword, std::string t_userEmail, std::string t_userPhone)
 {
 	m_name = t_userName;

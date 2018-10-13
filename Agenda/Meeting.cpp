@@ -2,11 +2,6 @@
 #include "Date.hpp"
 #include <algorithm>
 
-Meeting::Meeting()
-{
-
-}
-
 Meeting::Meeting(std::string t_sponsor, std::vector<std::string> t_participator, Date t_startTime, Date t_endTime, std::string t_title)
 {
 	m_sponsor = t_sponsor;
