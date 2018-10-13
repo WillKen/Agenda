@@ -14,4 +14,38 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Date.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Meeting.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AgendaService.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="AgendaUI.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Date.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Meeting.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Storage.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="User.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>
