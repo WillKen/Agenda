@@ -115,12 +115,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Date.cpp" />
-    <ClCompile Include="Meeting.cpp" />
-    <ClCompile Include="Storage.cpp" />
-    <ClCompile Include="User.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="AgendaService.hpp" />
     <ClInclude Include="AgendaUI.hpp" />
     <ClInclude Include="Date.hpp" />
@@ -128,6 +122,12 @@
     <ClInclude Include="Path.hpp" />
     <ClInclude Include="Storage.hpp" />
     <ClInclude Include="User.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Meeting.cpp" />
+    <ClCompile Include="Storage.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

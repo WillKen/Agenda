@@ -4,6 +4,9 @@
 
 using namespace std;
 
+bool isStringValid(const string& dateString);
+bool isNum(char ele);
+
 std::string cut(Date date) {
 	std::string ele = Date::dateToString(date);
 	ele.erase(std::remove(ele.begin(), ele.end(), '-'), ele.end());
@@ -28,7 +31,13 @@ Date::Date(int t_year, int t_month, int t_day, int t_hour, int t_minute)
 
 Date::Date(const std::string & dateString)
 {
-	*this = stringToDate(dateString);
+	if (!isStringValid(dateString)) {
+		m_minute = m_hour = m_day = m_month = m_year = 0;
+		return;
+	}
+	else {
+		*this = stringToDate(dateString);
+	}
 }
 
 int Date::getYear(void) const
@@ -92,7 +101,7 @@ bool Date::isValid(const Date & t_date)
 	int day = t_date.getDay();
 	int hour = t_date.getHour();
 	int minute = t_date.getMinute();
-	if (year < 1000 || year > 9999 || day < 0 || hour < 0 || hour >= 24 || minute < 0 || minute > 60)
+	if (year < 1000 || year > 9999 || day <= 0 || hour < 0 || hour >= 24 || minute < 0 || minute >= 60)
 		return false;
 	switch (month) {
 	case 1:
@@ -104,22 +113,30 @@ bool Date::isValid(const Date & t_date)
 	case 12:
 		if (day > 31)
 			return false;
+		else
+			return true;
 		break;
 	case 4:
 	case 6:
 	case 9:
 	case 11:
-		if (day > 31)
+		if (day > 30)
 			return false;
+		else
+			return true;
 		break;
 	case 2:
 		if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
 			if (day > 29)
 				return false;
+			else
+				return true;
 		}
 		else {
 			if (day > 28)
 				return false;
+			else
+				true;
 		}
 		break;
 	default:
@@ -133,6 +150,8 @@ Date Date::stringToDate(const std::string & t_dateString)
 {
 	Date notValid;
 	Date Valid;
+	if (!isStringValid(t_dateString))
+		return Valid;
 	int data = 0;
 	try {
 		for (int i = 0; i < 4; i++) {
@@ -266,6 +285,34 @@ bool Date::operator<=(const Date & t_date) const
 	string date1 = cut(*this);
 	string date2 = cut(t_date);
 	if (date1 <= date2)
+		return true;
+	else
+		return false;
+}
+
+bool isStringValid(const string& dateString)
+{
+	if (dateString.length() != 16)return false;
+	if (!isNum(dateString[0])) return false;
+	if (!isNum(dateString[1])) return false;
+	if (!isNum(dateString[2])) return false;
+	if (!isNum(dateString[3])) return false;
+	if (dateString[4] != '-') return false;
+	if (!isNum(dateString[5])) return false;
+	if (!isNum(dateString[6])) return false;
+	if (dateString[7] != '-') return false;
+	if (!isNum(dateString[8])) return false;
+	if (!isNum(dateString[9])) return false;
+	if (dateString[10] != '/') return false;
+	if (!isNum(dateString[11])) return false;
+	if (!isNum(dateString[12])) return false;
+	if (dateString[13] != ':') return false;
+	if (!isNum(dateString[14])) return false;
+	if (!isNum(dateString[15])) return false;
+	return true;
+}
+bool isNum(char ele) {
+	if (ele <= '9' && ele >= '0') 
 		return true;
 	else
 		return false;

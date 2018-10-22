@@ -15,20 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Date.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="User.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Storage.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="Meeting.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="AgendaService.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -50,5 +36,19 @@
     <ClInclude Include="User.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Date.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Meeting.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Storage.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

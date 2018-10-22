@@ -43,7 +43,7 @@ void Meeting::setParticipator(const std::vector<std::string>& t_participators)
 void Meeting::addParticipator(const std::string & t_participator)
 {
 	for (auto iter = m_participators.begin(); iter != m_participators.end(); iter++) {
-		if (*iter == t_participator)
+		if (*iter == t_participator) 
 			return;
 	}
 	m_participators.push_back(t_participator);
