@@ -136,7 +136,7 @@ bool Date::isValid(const Date & t_date)
 			if (day > 28)
 				return false;
 			else
-				true;
+				return true;
 		}
 		break;
 	default:

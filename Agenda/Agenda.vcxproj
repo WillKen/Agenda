@@ -124,6 +124,7 @@
     <ClInclude Include="User.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AgendaService.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Meeting.cpp" />
     <ClCompile Include="Storage.cpp" />
