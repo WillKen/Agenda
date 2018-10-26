@@ -140,7 +140,7 @@ bool AgendaService::createMeeting(const std::string & userName, const std::strin
 			else
 				return false;
 		});
-		if (overLap.size != 0)
+		if (overLap.size() != 0)
 			return false;
 	}
 	if (repeat.size() != (participator.size()+1))
@@ -173,7 +173,7 @@ bool AgendaService::addMeetingParticipator(const std::string & userName, const s
 		return false;
 
 	std::list<Meeting> date = m_storage->queryMeeting([participator](const Meeting &meeting)->bool {
-		if (meeting.getSponsor == participator || meeting.isParticipator(participator))
+		if (meeting.getSponsor() == participator || meeting.isParticipator(participator))
 			return true;
 		else
 			return false;
@@ -193,11 +193,11 @@ bool AgendaService::addMeetingParticipator(const std::string & userName, const s
 		return false;
 	else {
 		m_storage->updateMeeting([title](const Meeting &meeting)->bool {
-			if (meeting.getTitle == title)
+			if (meeting.getTitle() == title)
 				return true;
 			else
 				return false;
-		}, [participator](Meeting &meeting)->bool {
+		}, [participator](Meeting &meeting)->void {
 			meeting.addParticipator(participator);
 		});
 		return true;

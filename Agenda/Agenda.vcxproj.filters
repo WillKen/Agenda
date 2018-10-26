@@ -53,5 +53,11 @@
     <ClCompile Include="AgendaService.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="AgendaUI.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Agenda.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
