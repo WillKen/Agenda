@@ -115,9 +115,9 @@ void AgendaUI::userLogIn(void)
 	cout << "[log in] [username] [password]\n";
 	cout << "[log in] ";
 	cin >> userName >> userPassword;
+	m_userName = userName;
+	m_userPassword = userPassword;
 	if (m_agendaService.userLogIn(userName, m_userPassword)) {
-		m_userName = userName;
-		m_userPassword = userPassword;
 		cout << "[log in] succeed!\n";
 		while (executeOperation(getOperation()));
 	}
@@ -264,7 +264,7 @@ void AgendaUI::deleteAllMeetings(void)
 
 void AgendaUI::printMeetings(std::list<Meeting> t_meetings)
 {
-	cout << "title\t\tsponsor\tstart time\t\tend time\t\tparticipators\n";
+	cout << "title\t\tsponsor\t\tstart time\t\tend time\t\tparticipators\n";
 	for (auto iter = t_meetings.begin(); iter != t_meetings.end();iter++) {
 		cout << (*iter).getTitle() << '\t';
 		cout << (*iter).getSponsor() << '\t';

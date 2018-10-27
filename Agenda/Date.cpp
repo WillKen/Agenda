@@ -47,8 +47,7 @@ int Date::getYear(void) const
 
 void Date::setYear(const int t_year)
 {
-	if ((t_year >= 1000 & t_year <= 9999) || t_year == 0)
-		m_year = t_year;
+	m_year = t_year;
 }
 
 int Date::getMonth(void) const
@@ -58,8 +57,7 @@ int Date::getMonth(void) const
 
 void Date::setMonth(const int t_month)
 {
-	if (t_month >= 0 && t_month <= 12)
-		m_month = t_month;
+	m_month = t_month;
 }
 
 int Date::getDay(void) const
@@ -79,8 +77,7 @@ int Date::getHour(void) const
 
 void Date::setHour(const int t_hour)
 {
-	if (t_hour >= 0 & t_hour<24)
-		m_hour = t_hour;
+	m_hour = t_hour;
 }
 
 int Date::getMinute(void) const

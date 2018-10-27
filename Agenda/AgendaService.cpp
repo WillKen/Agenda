@@ -43,13 +43,13 @@ bool AgendaService::userRegister(const std::string & userName, const std::string
 
 bool AgendaService::deleteUser(const std::string & userName, const std::string & password)
 {
-	std::list<User> dele = m_storage->queryUser([userName, password](const User& user)->bool {
+	int deleNum= m_storage->deleteUser([userName, password](const User &user)->bool {
 		if (user.getName() == userName && user.getPassword() == password)
 			return true;
 		else
 			return false;
 	});
-	if (dele.size() == 0)
+	if (deleNum==0)
 		return false;
 	else {
 		bool quit;
@@ -96,7 +96,7 @@ bool AgendaService::createMeeting(const std::string & userName, const std::strin
 {
 	if (!Date::isValid(Date::stringToDate(startDate)) || !Date::isValid(Date::stringToDate(endDate)))
 		return false;
-	if (startDate == endDate)
+	if (startDate >= endDate)
 		return false;
 	if (participator.size() == 0)
 		return false;
@@ -113,7 +113,7 @@ bool AgendaService::createMeeting(const std::string & userName, const std::strin
 		if (((meeting.getSponsor() == userName) || meeting.isParticipator(userName))
 			&& ((meeting.getStartDate() <= startDate && meeting.getEndDate() >= endDate)
 				|| (meeting.getStartDate() > startDate && meeting.getStartDate() < endDate)
-				|| meeting.getEndDate() > startDate && meeting.getEndDate() < endDate))
+				|| (meeting.getEndDate() > startDate && meeting.getEndDate() < endDate)))
 			return true;
 		else
 			return false;
@@ -130,18 +130,18 @@ bool AgendaService::createMeeting(const std::string & userName, const std::strin
 		});
 		if (user.size() == 0) 
 			return false;
-		repeat.insert(*iter);
 		std::list<Meeting> overLap = m_storage->queryMeeting([&iter, startDate, endDate](const Meeting &meeting)->bool {
 			if (((meeting.getSponsor() == *iter) || meeting.isParticipator(*iter))
 				&& ((meeting.getStartDate() <= startDate && meeting.getEndDate() >= endDate)
 					|| (meeting.getStartDate() > startDate && meeting.getStartDate() < endDate)
-					|| meeting.getEndDate() > startDate && meeting.getEndDate() < endDate))
+					|| (meeting.getEndDate() > startDate && meeting.getEndDate() < endDate)))
 				return true;
 			else
 				return false;
 		});
 		if (overLap.size() != 0)
 			return false;
+		repeat.insert(*iter);
 	}
 	if (repeat.size() != (participator.size()+1))
 		return false;
@@ -162,7 +162,6 @@ bool AgendaService::addMeetingParticipator(const std::string & userName, const s
 		return false;
 	Date start = addM.begin()->getStartDate();
 	Date end = addM.begin()->getEndDate();
-	
 	std::list<User> addP = m_storage->queryUser([participator](const User &user)->bool {
 		if (user.getName() == participator)
 			return true;
@@ -171,13 +170,6 @@ bool AgendaService::addMeetingParticipator(const std::string & userName, const s
 	});
 	if (addP.size() == 0)
 		return false;
-
-	std::list<Meeting> date = m_storage->queryMeeting([participator](const Meeting &meeting)->bool {
-		if (meeting.getSponsor() == participator || meeting.isParticipator(participator))
-			return true;
-		else
-			return false;
-	});
 	std::string startDate = Date::dateToString(start);
 	std::string endDate = Date::dateToString(end);
 	std::list<Meeting> overLap = m_storage->queryMeeting([participator, startDate, endDate](const Meeting &meeting)->bool {
